@@ -1,0 +1,13 @@
+ El volumen de la unidad C no tiene etiqueta.
+ El n£mero de serie del volumen es: 58D2-A963
+
+ Directorio de C:\Users\Alumnot\Desktop\Usuarios\Usuario4
+
+13/10/2018  12:56    <DIR>          .
+13/10/2018  12:56    <DIR>          ..
+13/10/2018  12:51    <DIR>          Car41
+13/10/2018  12:51    <DIR>          Car42
+13/10/2018  12:53                 0 DocumentoUs4.docx
+13/10/2018  12:55                 0 Text4.txt
+               2 archivos              0 bytes
+               4 dirs  110.877.642.752 bytes libres

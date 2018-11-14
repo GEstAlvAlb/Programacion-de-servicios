@@ -1,0 +1,12 @@
+import java.io.*;
+public class aleatorio {
+	public static void main(String[]args) {
+	int numero=0;
+
+	
+	
+		numero=(int) (Math.random()*10+1);
+		System.out.println(numero)	;
+	
+	}
+}
