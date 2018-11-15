@@ -14,11 +14,11 @@ import java.awt.Color;
 public class Contenedor extends JComponent {
 	static JPanel panel;
 
-	static int columna = 3;
+	static int columna = 3; // posicion inicial del muñeco parado orizontal
 
-	static int fila = 195;
+	static int fila = 195; // posicion inicial del muñeco parado vertical
 
-	static int numero = 1;
+	static int numero = 1; // primera foto que se muestra
 
 	Contenedor(JPanel panel) {
 		this.panel = panel;
@@ -29,29 +29,12 @@ public class Contenedor extends JComponent {
 
 	public void paint(Graphics g) {
 		
-		//El niño
+		//El niño y el cambio de imagen
 		ImageIcon imagen = new ImageIcon(
 				new ImageIcon(getClass().getResource("imagenes/" + numero + ".png")).getImage());
 
-		g.drawImage(imagen.getImage(), columna, fila, 206, 356, null);
+		g.drawImage(imagen.getImage(), columna, fila, 206, 356, null); //el 206 es el ancho y el 356 el alto
 
-		// nuves
-		/*
-		 * g.setColor(Color.WHITE);
-		 * 
-		 * g.fillOval(35,40 ,100, 30); g.fillOval(70,45 ,150, 50); g.fillOval(160,55
-		 * ,100, 30); g.fillOval(320,45 ,100, 25); g.fillOval(340,40 ,100, 25);
-		 * g.fillOval(700,40 ,100, 30); g.fillOval(780,40 ,100, 30); g.fillOval(610,50
-		 * ,150, 30);
-		 **/
-
-		// sol
-
-		/*
-		 * g.setColor(Color.YELLOW);
-		 * 
-		 * g.fillOval(480,30 ,80,80);
-		 */
 
 	}
 
@@ -69,7 +52,7 @@ public class Contenedor extends JComponent {
 					panel.repaint();
 
 					columna += 10;
-
+					System.out.println("paso");
 					hilo.sleep(100);
 				}
 
@@ -83,6 +66,6 @@ public class Contenedor extends JComponent {
 		if (!hilo.isAlive()) {
 			hilo.start();
 		}
-		columna = 3;
+		columna = 3; //posicion en la que empieza el movimiento
 	}
 }
