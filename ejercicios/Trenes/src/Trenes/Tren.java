@@ -85,7 +85,6 @@ public class Tren extends Thread {
 			try {
 				Tren.sleep(300 - dis);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
