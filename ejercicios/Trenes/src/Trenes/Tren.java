@@ -4,41 +4,68 @@ import static Trenes.Semaforos.*;
 
 import java.util.Random;
 
-public class Tren  extends Thread {
+public class Tren extends Thread {
+
+	private int numEstaciones;
 
 	Tren(int i, int numEstaciones) {
 		this.setName("tren" + i);
+		this.numEstaciones=numEstaciones;
+
 	}
 
-	public void run(int numEstaciones) {
+	public void run() {
 
 		Random ran = new Random();
 		int vuelta = 0;
-		final int dis1 = 1000;
-		final int dis2 = 1500;
-		final int dis3 = 500;
-		final int dis4 = 2000;
+		final int dis1 = 100;
+		final int dis2 = 150;
+		final int dis3 = 50;
+		final int dis4 = 200;
 
-		while (vuelta <= 0) {// TODO bucle sin fin siempre estan dado vueltas,
+		while (vuelta <= 2) {// TODO bucle sin fin siempre estan dado vueltas,
 
-			for (int i=0;i<=numEstaciones;i++)
-			Estacion.estacion(getName(), 1);
+			try {
+				// parada 1
 
-			recorrido(dis1, getName());
+				Tren.sleep(1000);
+				estacion1.acquire();
+				System.out.println("Soy el " + getName() + " estoy cogiendo pasageros en la parada 1");
+				estacion4.release();
+				System.out.println("Soy el " + getName() + " Saliendo 1");
+				recorrido(dis1, getName());
 
-			Estacion.estacion(getName(), 2);
+				// parada2
+				System.out.println("Soy el " + getName() + " estoy cogiendo pasageros en la parada 2");
+				Tren.sleep(1000);
+				estacion2.acquire();
+				estacion1.release();
+				System.out.println("Soy el " + getName() + " Saliendo 2");
+				recorrido(dis2, getName());
 
-			recorrido(dis2, getName());
+				// parada3
+				System.out.println("Soy el " + getName() + " estoy cogiendo pasageros en la parada 3");
+				Tren.sleep(1000);
+				estacion3.acquire();
+				estacion2.release();
+				System.out.println("Soy el " + getName() + " Saliendo 3");
+				recorrido(dis3, getName());
 
-			Estacion.estacion(getName(), 3);
+				// parada4
+				System.out.println("Soy el " + getName() + " estoy cogiendo pasageros en la parada 4");
+				Tren.sleep(1000);
+				estacion4.acquire();
+				estacion3.release();
+				System.out.println("Soy el " + getName() + " Saliendo 4");
+				recorrido(dis4, getName());
+				
 
-			recorrido(dis3, getName());
+			} catch (InterruptedException e) {
 
-			// Semaforo 4
-			Estacion.estacion(getName(),4);
-			recorrido(dis4, getName());
-
+				e.printStackTrace();
+			}
 			vuelta = vuelta + 1;
+			System.out.println("soy " + getName() + " he terminado la vueta " + vuelta);
 
 		}
 	}
@@ -52,7 +79,8 @@ public class Tren  extends Thread {
 		do {
 			dis = ran.nextInt(70);
 			disT = dis + disT;
-			System.out.println("Soy " + nombre + " me quedan " + (disARecorrer - disT) + " metros");
+			// System.out.println("Soy " + nombre + " me quedan " + (disARecorrer - disT) +
+			// " metros");
 
 			try {
 				Tren.sleep(300 - dis);
