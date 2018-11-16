@@ -23,42 +23,12 @@ public class Tren extends Thread {
 		final int dis3 = 50;
 		final int dis4 = 200;
 
-		while (vuelta <= 2) {// TODO bucle sin fin siempre estan dado vueltas,
+		while (vuelta <= 10) {// TODO bucle sin fin siempre estan dado vueltas,
 
 			try {
-				// parada 1
-
-				Tren.sleep(1000);
-				estacion1.acquire();
-				System.out.println("Soy el " + getName() + " estoy cogiendo pasageros en la parada 1");
-				estacion4.release();
-				System.out.println("Soy el " + getName() + " Saliendo 1");
-				recorrido(dis1, getName());
-
-				// parada2
-				System.out.println("Soy el " + getName() + " estoy cogiendo pasageros en la parada 2");
-				Tren.sleep(1000);
-				estacion2.acquire();
-				estacion1.release();
-				System.out.println("Soy el " + getName() + " Saliendo 2");
-				recorrido(dis2, getName());
-
-				// parada3
-				System.out.println("Soy el " + getName() + " estoy cogiendo pasageros en la parada 3");
-				Tren.sleep(1000);
-				estacion3.acquire();
-				estacion2.release();
-				System.out.println("Soy el " + getName() + " Saliendo 3");
-				recorrido(dis3, getName());
-
-				// parada4
-				System.out.println("Soy el " + getName() + " estoy cogiendo pasageros en la parada 4");
-				Tren.sleep(1000);
-				estacion4.acquire();
-				estacion3.release();
-				System.out.println("Soy el " + getName() + " Saliendo 4");
-				recorrido(dis4, getName());
 				
+				
+				Estacion.estacion(getName());
 
 			} catch (InterruptedException e) {
 
@@ -70,7 +40,7 @@ public class Tren extends Thread {
 		}
 	}
 
-	public void recorrido(int disARecorrer, String nombre) {
+	public static void recorrido(int disARecorrer, String nombre) {
 		int dis = 0;
 		int disT = 0;
 

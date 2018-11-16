@@ -2,6 +2,8 @@ package aeropuerto;
 
 import java.util.concurrent.Semaphore;
 
+import aeropuerto2HEcho.Tiempo;
+
 public class Aeropuerto {
 	static int nAviones = 100;
 
