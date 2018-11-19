@@ -13,10 +13,7 @@ public class Estacion {
 	final static int[] dis = { 100, 150, 50, 200 };
 
 	public static void estacion(String nombre) throws InterruptedException {
-		final int dis1 = 100;
-		final int dis2 = 150;
-		final int dis3 = 50;
-		final int dis4 = 200;
+	
 		int numEstaciones = 4;
 		for (int i = 0; i <= numEstaciones - 1; i++) {
 			Tren.sleep(1000);

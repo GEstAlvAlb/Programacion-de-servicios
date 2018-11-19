@@ -30,7 +30,7 @@ public class Ventana extends javax.swing.JFrame {
             }
         });
 
-        panel.setBackground(new java.awt.Color(205, 255, 255));
+        panel.setBackground(new java.awt.Color(0, 0, 255));
 
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);

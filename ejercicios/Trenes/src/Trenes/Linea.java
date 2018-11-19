@@ -1,7 +1,9 @@
 package Trenes;
 import java.util.concurrent.Semaphore;
 
-public class Linea {
+import javax.swing.JFrame;
+
+public class Linea extends JFrame {
 
 	private static Tren a_tren[];	
 	private static final int NUM_TREN=3;
@@ -9,6 +11,12 @@ public class Linea {
 	
 
 	public static void main (String[] args) {
+		
+		Linea  f=new Linea();
+		f.setSize(400,400);
+		f.setVisible(true);
+		Ventana p=new Ventana("/fotos/via.gif");
+		f.add(p);
 		
 		a_tren=new Tren[NUM_TREN];
 		System.out.println("Lanzo los trenes");

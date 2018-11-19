@@ -54,6 +54,8 @@ public class Tren extends Thread {
 
 			try {
 				Tren.sleep(300 - dis);
+				Ventana.columna += dis;
+				
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
