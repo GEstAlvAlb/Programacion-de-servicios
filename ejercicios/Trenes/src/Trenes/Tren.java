@@ -1,7 +1,5 @@
 package Trenes;
 
-import static Trenes.Semaforos.*;
-
 import java.util.Random;
 
 public class Tren extends Thread {
@@ -16,14 +14,11 @@ public class Tren extends Thread {
 
 	public void run() {
 
-		Random ran = new Random();
+	
 		int vuelta = 0;
-		final int dis1 = 100;
-		final int dis2 = 150;
-		final int dis3 = 50;
-		final int dis4 = 200;
 
-		while (vuelta <= 10) {// TODO bucle sin fin siempre estan dado vueltas,
+
+		while (vuelta <= 2) {// TODO bucle sin fin siempre estan dado vueltas,
 
 			try {
 				
@@ -38,6 +33,7 @@ public class Tren extends Thread {
 			System.out.println("soy " + getName() + " he terminado la vueta " + vuelta);
 
 		}
+		System.out.println("soy " + getName() + " me voy a cocheras ");
 	}
 
 	public static void recorrido(int disARecorrer, String nombre) {
@@ -54,7 +50,7 @@ public class Tren extends Thread {
 
 			try {
 				Tren.sleep(300 - dis);
-				Ventana.columna += dis;
+				
 				
 			} catch (InterruptedException e) {
 				e.printStackTrace();

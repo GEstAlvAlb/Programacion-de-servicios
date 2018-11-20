@@ -1,4 +1,4 @@
-package Trenes;
+package fotos;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -15,7 +15,7 @@ public class Ventana extends javax.swing.JPanel{
 
 	static int fila = 195; // posicion inicial del muñeco parado vertical
 	
-    public Ventana(String nombre) {
+    public Ventana() {
     	this.nombre=nombre;
     	//this.colum=colum;
     	
@@ -23,7 +23,7 @@ public class Ventana extends javax.swing.JPanel{
  
 	public void paint (Graphics g) {
 		Dimension tamanio =getSize();
-		imagen=new ImageIcon (getClass().getResource(nombre));
+		imagen=new ImageIcon (getClass().getResource("/fotos/via.gif"));
 		g.drawImage(imagen.getImage(), 0, 0, tamanio.width, tamanio.height, null);
 		setOpaque(false);
 		
@@ -37,6 +37,9 @@ public class Ventana extends javax.swing.JPanel{
 		
 	}
 	
+	public void mover() {
+		repaint();
+	}
 	 
    
    

@@ -28,8 +28,6 @@ public class Estacion {
 			System.out.println("Soy el " + nombre + " Saliendo " +(i+1));
 			Tren.recorrido(dis[i], nombre);
 		}
-		;
-
 	
 	}
 
