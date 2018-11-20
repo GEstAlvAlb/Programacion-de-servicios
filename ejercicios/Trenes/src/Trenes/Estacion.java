@@ -26,7 +26,7 @@ public class Estacion {
 				semaforos[i - 1].release();
 			}
 			System.out.println("Soy el " + nombre + " Saliendo " +(i+1));
-			if(nombre=)
+			
 			Tren.recorrido(dis[i], nombre,10,0);
 		}
 		;
