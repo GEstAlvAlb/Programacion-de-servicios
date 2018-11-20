@@ -22,9 +22,10 @@ public class Linea extends JFrame {
 		System.out.println("Lanzo los trenes");
 		
 		for (int i=0;i<NUM_TREN;i++) {
-			a_tren[i]=new Tren(i+1,NUM_ESTACIONES);
+			a_tren[i]=new Tren(i+1,NUM_ESTACIONES,p);
 			a_tren[i].start();
 		}
+		
 		
 	}
 	

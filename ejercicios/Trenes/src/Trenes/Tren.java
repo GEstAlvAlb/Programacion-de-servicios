@@ -6,11 +6,16 @@ import java.util.Random;
 
 public class Tren extends Thread {
 
+	Linea f = new Linea();
+	static Ventana ventana;
 	private int numEstaciones;
+	static int x=10;
+	static int y=10;
 
-	Tren(int i, int numEstaciones) {
+	Tren(int i, int numEstaciones, Ventana p) {
 		this.setName("tren" + i);
-		this.numEstaciones=numEstaciones;
+		this.numEstaciones = numEstaciones;
+		ventana = p;
 
 	}
 
@@ -18,16 +23,11 @@ public class Tren extends Thread {
 
 		Random ran = new Random();
 		int vuelta = 0;
-		final int dis1 = 100;
-		final int dis2 = 150;
-		final int dis3 = 50;
-		final int dis4 = 200;
 
-		while (vuelta <= 10) {// TODO bucle sin fin siempre estan dado vueltas,
+		while (vuelta <= 1) {// TODO bucle sin fin siempre estan dado vueltas,
 
 			try {
-				
-				
+
 				Estacion.estacion(getName());
 
 			} catch (InterruptedException e) {
@@ -40,7 +40,7 @@ public class Tren extends Thread {
 		}
 	}
 
-	public static void recorrido(int disARecorrer, String nombre) {
+	public static void recorrido(int disARecorrer, String nombre,int x, int y) {
 		int dis = 0;
 		int disT = 0;
 
@@ -49,18 +49,16 @@ public class Tren extends Thread {
 		do {
 			dis = ran.nextInt(70);
 			disT = dis + disT;
-			// System.out.println("Soy " + nombre + " me quedan " + (disARecorrer - disT) +
-			// " metros");
-
+			System.out.println("Soy " + nombre + " me quedan " + (disARecorrer - disT) + " metros");
+			ventana.mover(x, y);
 			try {
 				Tren.sleep(300 - dis);
-				Ventana.columna += dis;
-				
+
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 
-		} while (disT <= disARecorrer - 70);
+		} while (disT <= (disARecorrer - 70));
 
 		disT = 0;
 		dis = 0;
