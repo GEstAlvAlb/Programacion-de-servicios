@@ -1,121 +1,38 @@
 package asd;
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
+import java.util.Random;
 
-public class Carrera extends JComponent {
+public class Carrera extends Thread {
+	String nombre;
+	int velocidad;
+	static Interfaz interfaz = new Interfaz();
 
-    private final static int ANCHO = 768;
+	public Carrera(String nombre, int velocidad) {
+		this.nombre = nombre;
+		this.velocidad = velocidad;
+	}
 
-    private final static int ALTO = 384;
+	public void run() {
+		for (int i = 1; i <= 25; i++) {
+			System.out.print(nombre + " ");
+			interfaz.mover(nombre);
+			try {
+				sleep(1000 / velocidad);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		System.out.println("Terminó: " + nombre + "\n");
+	}
 
-    private final static int DIAMETRO = 10;
+	public static void main(String[] args) {
+		Random random = new Random();
+		Carrera friki1 = new Carrera("1", random.nextInt(10));
+		Carrera friki2 = new Carrera("2", random.nextInt(10));
+		Carrera friki3 = new Carrera("3", random.nextInt(10));
 
-    private float x, y;
-
-    private float vx, vy;
-
-    private boolean arriba, abajo, izquierda, derecha;
-
-    public Carrera() {
-        setPreferredSize(new Dimension(ANCHO, ALTO));
-        x = 10;
-        y = 20;
-        addKeyListener(new KeyAdapter() {
-                public void keyPressed(KeyEvent e) {
-                    actualiza(e.getKeyCode(), true);
-                }
-
-                public void keyReleased(KeyEvent e) {
-                    actualiza(e.getKeyCode(), false);
-                }
-
-                private void actualiza(int keyCode, boolean pressed) {
-                    switch (keyCode) {
-                        case KeyEvent.VK_UP:
-                            arriba = pressed;
-                            break;
-
-                        case KeyEvent.VK_DOWN:
-                            abajo = pressed;
-                            break;
-
-                        case KeyEvent.VK_LEFT:
-                            izquierda = pressed;
-                            break;
-
-                        case KeyEvent.VK_RIGHT:
-                            derecha = pressed;
-                            break;
-                    }
-                }
-            });
-        setFocusable(true);
-    }
-
-    private float clamp(float valor, float min, float max) {
-        if (valor > max)
-            return max;
-        if (valor < min)
-            return min;
-        return valor;
-    }
-
-    private void fisica(float dt) {
-        vx = 0;
-        vy = 0;
-        if (arriba)
-            vy = -300;
-        if (abajo)
-            vy = 300;
-        if (izquierda)
-            vx = -300;
-        if (derecha)
-            vx = 300;
-        x = clamp(x + vx * dt, 0, ANCHO - DIAMETRO);
-        y = clamp(y + vy * dt, 0, ALTO - DIAMETRO);
-    }
-
-    public void paint(Graphics g) {
-        g.setColor(Color.WHITE);
-        g.fillRect(0, 0, ANCHO, ALTO);
-        
-        g.setColor(Color.RED);
-        g.fillOval(Math.round(x), Math.round(y), DIAMETRO, DIAMETRO);
-    }
-
-    private void dibuja() throws Exception {
-        SwingUtilities.invokeAndWait(new Runnable() {
-                public void run() {
-                    paintImmediately(0, 0, ANCHO, ALTO);
-                }
-            });
-    }
-
-    public void cicloPrincipalJuego() throws Exception {
-        long tiempoViejo = System.nanoTime();
-        while (true) {
-            long tiempoNuevo = System.nanoTime();
-            float dt = (tiempoNuevo - tiempoViejo) / 1000000000f;
-            tiempoViejo = tiempoNuevo;
-            fisica(dt);
-            dibuja();
-        }
-    }
-
-    public static void main(String[] args) throws Exception {
-        JFrame jf = new JFrame("PingBall");
-        jf.addWindowListener(new WindowAdapter() {
-                public void windowClosing(WindowEvent e) {
-                    System.exit(0);
-                }
-            });
-        jf.setResizable(false);
-        Carrera ball = new Carrera();
-        jf.getContentPane().add(ball);
-        jf.pack();
-        jf.setVisible(true);
-        ball.cicloPrincipalJuego();
-    }
+		friki1.start();
+		friki2.start();
+		friki3.start();
+	}
 }

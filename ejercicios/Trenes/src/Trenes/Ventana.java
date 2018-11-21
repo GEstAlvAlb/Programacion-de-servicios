@@ -12,7 +12,7 @@ public class Ventana extends javax.swing.JPanel {
 
 	ImageIcon imagen;
 	ImageIcon imagen2;
-	
+
 	// int colum;
 	String nombre;
 
@@ -26,7 +26,7 @@ public class Ventana extends javax.swing.JPanel {
 	public Ventana(String nombre) {
 		this.nombre = nombre;
 		this.tren = new Tren2("/fotos/tren1.png");
-		this.tren2 = new Tren2("/fotos/tren1.png");
+		this.tren2 = new Tren2("/fotos/tren2.png");
 
 	}
 
@@ -35,14 +35,6 @@ public class Ventana extends javax.swing.JPanel {
 		imagen = new ImageIcon(getClass().getResource("/fotos/via.gif"));
 		g.drawImage(imagen.getImage(), 0, 0, tamanio.width, tamanio.height, null);
 		setOpaque(false);
-
-		Graphics2D g2 = (Graphics2D) g;
-
-		g2.drawImage(new ImageIcon(getClass().getResource("/fotos/tren1.png")).getImage(), getColumna(), getFila(),
-				null);
-		
-		g2.drawImage(new ImageIcon(getClass().getResource("/fotos/tren2.png")).getImage(), getColumna(), getFila()+210,
-				null);
 
 	}
 
@@ -64,9 +56,9 @@ public class Ventana extends javax.swing.JPanel {
 
 	public void mover(int x, int y) {
 
-		 setFila(y);
-		 setColumna(x);
-		 
+		setFila(y);
+		setColumna(x);
+
 		repaint();
 	}
 
