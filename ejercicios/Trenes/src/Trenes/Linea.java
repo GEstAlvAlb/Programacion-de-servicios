@@ -8,11 +8,7 @@ public class Linea extends JFrame {
 	private static Tren a_tren[];
 
 	public static void main(String[] args) {
-
-	
 		
-		
-
 		a_tren = new Tren[NUM_TRENES];
 		System.out.println("Lanzo los trenes");
 
@@ -24,4 +20,3 @@ public class Linea extends JFrame {
 	}
 
 }
-

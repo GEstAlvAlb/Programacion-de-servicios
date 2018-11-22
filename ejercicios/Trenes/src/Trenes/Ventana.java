@@ -1,67 +1,53 @@
 package Trenes;
 
-import static Trenes.Constantes.NUM_TRENES;
-
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
+import java.awt.Component;
 import java.awt.Graphics;
-import java.awt.Image;
-
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.JPanel;
 
-public class Ventana extends javax.swing.JPanel {
-
-	private final PanelFondo jpanel = new PanelFondo();
-
-	JLabel[] imagenTren = new JLabel[3];
-	JFrame framePrincipal = null;
-	ImageIcon imagen;
+public class Ventana extends JPanel {
+	private ImageIcon fondo;
+	private ImageIcon tren[] = new ImageIcon[3];
+	int x[] = new int[3];
+	int y[] = new int[3];
+	
 
 	public Ventana() {
 
-		iniciar();
-		framePrincipal.setVisible(true);
-
 	}
 
+	@Override
+	public void paintComponent(Graphics g) {
 
-
-	public void paint(Graphics g) {
-		Dimension tamanio = getSize();
-		imagen = new ImageIcon(getClass().getResource("/fotos/via.gif"));
-		g.drawImage(imagen.getImage(), 0, 0, tamanio.width, tamanio.height, null);
+		y[1]= 50;
+		y[2]=180;
+		y[0]=320;
+		
+		fondo = new ImageIcon(getClass().getResource("/fotos/via.gif"));
+		g.drawImage(fondo.getImage(), 0, 0, getWidth(), getHeight(), this);
 		setOpaque(false);
+		super.paintComponent(g);
 		
-		
+		setVisible(true);
 
-}
-	public void iniciar() {
-		framePrincipal = new JFrame("CARRERA");
-		framePrincipal.setSize(1300, 900);
-		framePrincipal.setLayout(null);
-		framePrincipal.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		framePrincipal.setLocationRelativeTo(null);
-		framePrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//painComponent(null);
+		for (int i = 0; i <= 2; i++) {
 
-		for (int i = 0; i < NUM_TRENES; i++) {
-			imagenTren[i] = new JLabel();
-			imagenTren[i].setBounds(10, 50, 250, 250);
-			ImageIcon fotoTren = new ImageIcon(getClass().getResource("/fotos/tren" + (i + 1) + ".png"));
-			ImageIcon imgEscalada = new ImageIcon(fotoTren.getImage().getScaledInstance(imagenTren[i].getWidth(),
-					imagenTren[i].getHeight(), Image.SCALE_DEFAULT));
-			imagenTren[i].setIcon(imgEscalada);
-			framePrincipal.add(imagenTren[i]);
-
+			tren[i] = new ImageIcon(getClass().getResource("/fotos/tren" + (i + 1) + ".png"));
+			g.drawImage(tren[i].getImage(), x[i], y[i], 120, 120, this);
+			setOpaque(false);
+			super.paintComponent(g);
+			setVisible(true);
 		}
+
 	}
 
-	public void mover(int id) {
-
-		imagenTren[id].setLocation(imagenTren[id].getX() + 5, imagenTren[id].getY());
+	public void mover() 
+	{
+		/*for (int i = 0; i < 1002; i++) {
+			
+			x[1] += 1;
+			y[1] += 1;
+		}*/
 	}
 
 }
