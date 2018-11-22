@@ -1,65 +1,67 @@
 package Trenes;
 
-import java.awt.Container;
+import static Trenes.Constantes.NUM_TRENES;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.Image;
 
 import javax.swing.ImageIcon;
-import javax.swing.JPanel;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 public class Ventana extends javax.swing.JPanel {
 
+	private final PanelFondo jpanel = new PanelFondo();
+
+	JLabel[] imagenTren = new JLabel[3];
+	JFrame framePrincipal = null;
 	ImageIcon imagen;
-	ImageIcon imagen2;
 
-	// int colum;
-	String nombre;
+	public Ventana() {
 
-	static int columna = 20; // posicion inicial del muñeco parado orizontal
-	static JPanel panel;
-	static int fila = 195; // posicion inicial del muñeco parado vertical
-
-	Tren2 tren;
-	Tren2 tren2;
-
-	public Ventana(String nombre) {
-		this.nombre = nombre;
-		this.tren = new Tren2("/fotos/tren1.png");
-		this.tren2 = new Tren2("/fotos/tren2.png");
+		iniciar();
+		framePrincipal.setVisible(true);
 
 	}
+
+
 
 	public void paint(Graphics g) {
 		Dimension tamanio = getSize();
 		imagen = new ImageIcon(getClass().getResource("/fotos/via.gif"));
 		g.drawImage(imagen.getImage(), 0, 0, tamanio.width, tamanio.height, null);
 		setOpaque(false);
+		
+		
 
+}
+	public void iniciar() {
+		framePrincipal = new JFrame("CARRERA");
+		framePrincipal.setSize(1300, 900);
+		framePrincipal.setLayout(null);
+		framePrincipal.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		framePrincipal.setLocationRelativeTo(null);
+		framePrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//painComponent(null);
+
+		for (int i = 0; i < NUM_TRENES; i++) {
+			imagenTren[i] = new JLabel();
+			imagenTren[i].setBounds(10, 50, 250, 250);
+			ImageIcon fotoTren = new ImageIcon(getClass().getResource("/fotos/tren" + (i + 1) + ".png"));
+			ImageIcon imgEscalada = new ImageIcon(fotoTren.getImage().getScaledInstance(imagenTren[i].getWidth(),
+					imagenTren[i].getHeight(), Image.SCALE_DEFAULT));
+			imagenTren[i].setIcon(imgEscalada);
+			framePrincipal.add(imagenTren[i]);
+
+		}
 	}
 
-	public static int getColumna() {
-		return columna;
-	}
+	public void mover(int id) {
 
-	public void setColumna(int columna) {
-		Ventana.columna = this.columna + columna;
-	}
-
-	public static int getFila() {
-		return fila;
-	}
-
-	public void setFila(int fila) {
-		Ventana.fila = this.fila + fila;
-	}
-
-	public void mover(int x, int y) {
-
-		setFila(y);
-		setColumna(x);
-
-		repaint();
+		imagenTren[id].setLocation(imagenTren[id].getX() + 5, imagenTren[id].getY());
 	}
 
 }

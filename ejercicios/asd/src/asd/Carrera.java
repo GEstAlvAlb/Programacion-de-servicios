@@ -33,7 +33,7 @@ public class Carrera extends Thread {
 	public static void main(String[] args) {
 		Random random = new Random();
 		for (int i=0; i <= 2; i++) {
-			hilo[i] = new Carrera(i,"Corredor"+i, random.nextInt(10));
+			hilo[i] = new Carrera(i,"Corredor"+i, random.nextInt(10)+1);
 			
 		}
 		for (int i=0; i <= 2; i++) {

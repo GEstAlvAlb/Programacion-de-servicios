@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 public class Interfaz {
 	JFrame framePrincipal = null;
 	JLabel imagenFriki[]=  new JLabel[3]; 
-	JLabel carretera = null;
+
 
 	
 	public Interfaz() {
