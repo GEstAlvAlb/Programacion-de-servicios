@@ -6,50 +6,50 @@ import java.util.Random;
 
 public class Tren extends Thread {
 
-	static Ventana ventana = new Ventana();
-	Linea f = new Linea();
-
 	private int id;
+	static Ventana ventana;
 
-	Tren(int id) {
+	Tren(int id, Ventana ventana) {
 		this.setName("tren" + (id + 1));
 		this.id = id;
+		this.ventana = ventana;
+
 	}
+
+	static int vuelta = 1;
 
 	public void run() {
 
-		Random ran = new Random();
-		int vuelta = 0;
-		while (vuelta <= 1) {
+		while (vuelta <= 2) {
 
 			try {
 				Estacion.estacion(getName(), id);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			vuelta = vuelta + 1;
+
 			System.out.println("soy " + getName() + " he terminado la vueta " + vuelta);
+			vuelta = vuelta + 1;
 		}
 	}
 
-	public static void recorrido(int disARecorrer, String nombre, int id) {
+	public static void recorrido(int disARecorrer, String nombre, int id, int semaforo) {
 		int dis = 0;
 		int disT = 0;
-		Random ran = new Random();
 
 		do {
-			dis = ran.nextInt(70);
-			disT = dis + disT;
-			System.out.println("Soy " + nombre + " me quedan " + (disARecorrer - disT) + " metros");
-			ventana.mover();
+			disT = disT + 50;
+			// System.out.println("Soy " + nombre + " me quedan " + (disARecorrer - disT) +
+			// " metros");
+			ventana.mover(id, dis, semaforo, vuelta);
 
 			try {
-				Tren.sleep(300 - dis);
+				Tren.sleep(100);// 300
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 
-		} while (disT <= (disARecorrer - 70));
+		} while (disT < disARecorrer);
 
 		disT = 0;
 		dis = 0;
