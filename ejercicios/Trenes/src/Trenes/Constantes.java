@@ -12,7 +12,8 @@ public class Constantes {
 	public static Semaphore estacion7=new Semaphore(1);
 	
 	public static final int NUM_ESTACIONES= 6;
-	public static final int NUM_TRENES = 1;
+	public static final int NUM_TRENES = 2;
+	public static final int NUM_VUELTAS=3;
 	
 	
 }

@@ -13,23 +13,27 @@ public class Tren extends Thread {
 		this.setName("tren" + (id + 1));
 		this.id = id;
 		this.ventana = ventana;
+		for (int i =0;i==NUM_TRENES-1;i++) {
+			vuelta[i]=1;
+		}
 
 	}
 
-	static int vuelta = 1;
+	static int vuelta[] = new int[NUM_TRENES];
 
 	public void run() {
 
-		while (vuelta <= 2) {
-
+		while (vuelta[id] < NUM_VUELTAS) {
+			
 			try {
 				Estacion.estacion(getName(), id);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 
-			System.out.println("soy " + getName() + " he terminado la vueta " + vuelta);
-			vuelta = vuelta + 1;
+			
+			vuelta[id] = vuelta[id] + 1;
+			System.out.println("soy " + getName() + " he terminado la vueta " + vuelta[id]);
 		}
 	}
 
@@ -41,7 +45,7 @@ public class Tren extends Thread {
 			disT = disT + 50;
 			// System.out.println("Soy " + nombre + " me quedan " + (disARecorrer - disT) +
 			// " metros");
-			ventana.mover(id, dis, semaforo, vuelta);
+			ventana.mover(id, dis, semaforo, vuelta[id]);
 
 			try {
 				Tren.sleep(100);// 300
