@@ -51,14 +51,12 @@ public class Ventana extends JPanel {
 				}
 
 			} else {
-				if (vuelta == NUM_VUELTAS) {
-					x[id] -= 15;
-				} else {
+				
 
 					numTren[id] = 1;
 					x[id] = 300;
 					y[id] = 20;
-				}
+				
 			}
 		}
 		if (semaforo > 0 && semaforo < 3) {

@@ -1,4 +1,4 @@
-package aviones.AeropuertoMonitores.src.com.vpr.aeropuerto;
+package com.vpr.aeropuerto;
 
 import java.util.concurrent.Semaphore;
 
