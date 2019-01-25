@@ -1,0 +1,20 @@
+datainputStream
+en el cliente;
+	dataInputStream entrada;
+	entrada=new DataInpuntStream(miCliente.getInputStream());
+	la calse DaraInputStream permite la lectura de lineas de texto y tipos de datos primiticos de java de un modo altermativo
+	read(), readChar(),readInt()..
+
+en el servidor
+	dataInputStream entrada
+	entrada
+
+
+salida
+	PrintStream salida;
+	salida = new Printstream(miCliente.getOutPutStream());
+	dataOutputStream salida;
+salida=new DataOutputStream pertie esctibir cualquier tipo promitivo
+en el servidor
+PrintStream salida;
+salida =new PrintSream(socketServicio
