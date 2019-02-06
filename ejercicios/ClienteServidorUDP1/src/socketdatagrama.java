@@ -20,7 +20,7 @@ public class socketdatagrama {
 			datagramSocket.receive(datagrama1);
 			System.out.println("Mensaje recibido: " + new String(mensaje));
 			System.out.println("Enviando mensaje");
-			InetAddress addr2 = InetAddress.getByName("192.168.34.34"); // ip del cliente
+			InetAddress addr2 = InetAddress.getByName("192.168.34.34"); // ip del servidor donde queremos enviarlo
 			DatagramPacket datagrama2 = new DatagramPacket(mensaje, mensaje.length, addr2, 5554);
 			datagramSocket.send(datagrama2);
 			System.out.println("Mensaje enviado");

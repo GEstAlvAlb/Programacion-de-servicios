@@ -17,7 +17,7 @@ public class Servidor {
 		int max = 0;
 		ServerSocket servidor = new ServerSocket(numeroPuerto); // al no ponerle nada coje la ip del ordenador
 																// directamente
-		
+		PrintWriter fsalida = null;
 		ClienteHilo cliente = null;
 		String cad = "";
 		System.out.println("Esperando conexión....");
@@ -30,7 +30,6 @@ public class Servidor {
 			cliente.start();
 
 		}
-		
 
 	}
 }

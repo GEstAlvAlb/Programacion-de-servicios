@@ -3,14 +3,17 @@ package Servidor;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import Objeto.Objeto;
+
 public class ClienteHilo extends Thread {
-	int num1, num2;
-	String simbolo;
-	int total;
+
 	Socket socket;
+	Objeto objeto = new Objeto();
 
 	ClienteHilo(Socket socket) {
 
@@ -21,36 +24,48 @@ public class ClienteHilo extends Thread {
 		try {
 			BufferedReader fEntrada = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			PrintWriter fSalida = new PrintWriter(socket.getOutputStream(), true);
-			num1 = Integer.parseInt(fEntrada.readLine());
-			simbolo = fEntrada.readLine();
-			num2 = Integer.parseInt(fEntrada.readLine());
-			switch (simbolo) {
+
+			ObjectInputStream objEntrada = new ObjectInputStream(socket.getInputStream());
+
+			objeto = (Objeto) objEntrada.readObject();
+
+			switch (objeto.getSimbolo()) {
 			case "+":
-				total=num2+num1;
+				objeto.setResultado(objeto.getNum1() + objeto.getNum2());
 				break;
 			case "-":
-				
-				total=num1-num2;
+
+				objeto.setResultado(objeto.getNum1() - objeto.getNum2());
 				break;
 			case "*":
-				total=num1*num2;
+				objeto.setResultado(objeto.getNum1() * objeto.getNum2());
 
 				break;
 			case "/":
-				total=num1/num2;
+				objeto.setResultado(objeto.getNum1() / objeto.getNum2());
 
 				break;
 
 			default:
 				break;
 			}
+
+			ObjectOutputStream objSalida = new ObjectOutputStream(socket.getOutputStream());
+			objSalida.writeObject(objeto);
 			
-			fSalida.println(String.valueOf(total));
 			
-		} catch (NumberFormatException | IOException e) {
+			fEntrada.close();
+			fSalida.close();
+			objEntrada.close();
+			objSalida.close();
+			socket.close();
+		
+
+		} catch (NumberFormatException | IOException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 
 	}
 
