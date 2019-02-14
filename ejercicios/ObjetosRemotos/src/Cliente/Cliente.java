@@ -12,7 +12,7 @@ public class Cliente {
 		try {
 			System.out.println("Localizando registro de objetos remotos...");
 			Registry registry = LocateRegistry.getRegistry("localhost", 5555);
-			calc = (Interfaz) registry.lookup("Calculadora");
+			calc = (Interfaz) registry.lookup("Interfaz");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

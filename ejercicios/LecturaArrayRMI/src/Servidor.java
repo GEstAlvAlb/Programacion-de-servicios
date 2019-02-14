@@ -1,5 +1,4 @@
-package Servidor;
-
+import java.lang.reflect.Array;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -7,28 +6,37 @@ import java.rmi.server.UnicastRemoteObject;
 
 public class Servidor implements Interfaz {
 
-	public int suma(int a, int b) throws RemoteException {
-		return (a + b);
-	}
+	int[] array = new int[] { 1, 23, 4, 56, 7, 54, 48, 1 };
 
-	public int resta(int a, int b) throws RemoteException {
-		return (a - b);
-	}
+	public int lectura(int a) throws RemoteException {
 
-	public int multip(int a, int b) throws RemoteException {
-		return (a * b);
-	}
-
-	public int div(int a, int b) throws RemoteException {
-		return (a / b);
+		return array[a - 1];
 
 	}
+
+	public boolean escritura(int a, int b) throws RemoteException {
+
+		array[a] = b;
+
+		return true;
+	}
+
+	public boolean borrado(int a) throws RemoteException {
+		array[a] = 0;
+		return true;
+	}
+	public int[] leerTodo() {
+		return array;
+		
+		
+	}
+	
 
 	public static void main(String[] args) {
 		System.out.println("Creando el registro de objetos remotos...");
 		Registry reg = null;
 		try {
-			reg = LocateRegistry.createRegistry(5555);
+			reg = LocateRegistry.createRegistry(6666);
 			// Puerto de ref. del objeto java
 		} catch (Exception e) {
 			System.out.println("ERROR: No se ha podido crear el registro");
