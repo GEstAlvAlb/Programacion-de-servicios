@@ -14,6 +14,9 @@ public class Persona {
 	public Persona(String nombre, String contraseña) {
 		this.nombre=nombre;
 		this.contraseña=contraseña;
+		idLibro=0;
+		numPagina=0;
+		
 	}
 
 	public String getNombre() {
