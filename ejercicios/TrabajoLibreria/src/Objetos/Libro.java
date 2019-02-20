@@ -7,11 +7,11 @@ public class Libro {
 	String ruta;
 	int numLineas;
 
-	public Libro(String nomLibro, int idLibro, String ruta, int numLineas) {
+	public Libro(String nomLibro, int idLibro, String ruta) {
 		this.nomLibro = nomLibro;
 		this.idLibro = idLibro;
 		this.ruta = ruta;
-		this.numLineas = numLineas;
+		
 	}
 	
 	
