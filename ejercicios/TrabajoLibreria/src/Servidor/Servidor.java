@@ -26,8 +26,7 @@ public class Servidor implements Interface {
 
 	ArrayList<Libro> idsLibros = new ArrayList<>();
 	ArrayList<Persona> nomPersonas = new ArrayList<>();
-	Libro Pocoyo = new Libro("Pocoyo", 001,
-			"C:\\Users\\Alberto\\Desktop\\Nueva carpeta\\Programacion-de-servicios\\ejercicios\\TrabajoLibreria\\Libros");
+	Libro Pocoyo = new Libro("Pocoyo", 001,"./Libros");
 
 	Persona administrador = new Persona("Administrador", "1234");
 
@@ -57,14 +56,16 @@ public class Servidor implements Interface {
 	}
 
 	@Override
-	public String hoja() throws IOException {
+	public List<String> hoja(String nomLibro, int numPagina) throws IOException {
 		List<String> lineas;
 
 		lineas = Files
-				.readAllLines(Paths.get(idsLibros.get(0).getRuta() + File.separator + idsLibros.get(0).getNomLibro()+".txt" ));
-		System.out.println(lineas.toString());
+				.readAllLines(Paths.get(idsLibros.get(0).getRuta() + File.separator + nomLibro+".txt" ));
+		System.out.println(nomLibro);
 
-		return lineas.toString();
+		ArrayList<String> primeros=new ArrayList<String>(lineas.subList(5, 10));
+	
+		return primeros;
 	}
 
 	@Override
