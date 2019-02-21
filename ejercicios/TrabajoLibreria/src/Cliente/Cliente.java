@@ -56,7 +56,7 @@ public class Cliente implements ActionListener {
 									List<String> lista;
 									try{
 										lista = inter.hoja(libro,pag);
-										
+										pag=Integer.parseInt(lista.get(lista.size()-1));
 										System.out.println(lista);
 										vista.textPane.setText(lista.get(0).toString() + "\n" + lista.get(1).toString()
 												+ "\n" + lista.get(2).toString() + "\n" + lista.get(3).toString() + "\n"

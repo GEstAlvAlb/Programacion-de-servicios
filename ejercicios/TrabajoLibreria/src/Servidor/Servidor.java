@@ -63,8 +63,9 @@ public class Servidor implements Interface {
 				.readAllLines(Paths.get(idsLibros.get(0).getRuta() + File.separator + nomLibro+".txt" ));
 		System.out.println(nomLibro);
 
-		ArrayList<String> primeros=new ArrayList<String>(lineas.subList(5, 10));
+		ArrayList<String> primeros=new ArrayList<String>(lineas.subList(numPagina, numPagina+5));
 	
+		primeros.add(String.valueOf(numPagina+5));
 		return primeros;
 	}
 
