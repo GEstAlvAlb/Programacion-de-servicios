@@ -68,6 +68,29 @@ public class Cliente implements ActionListener {
 
 								}
 							});
+							
+							vista.btnPagAnterior.addActionListener(new ActionListener() {
+
+								@Override
+								public void actionPerformed(ActionEvent e) {
+									List<String> lista;
+									try{
+										lista = inter.hojaAnte(libro,pag);
+										pag=Integer.parseInt(lista.get(lista.size()-1));
+										System.out.println(lista);
+										vista.textPane.setText(lista.get(0).toString() + "\n" + lista.get(1).toString()
+												+ "\n" + lista.get(2).toString() + "\n" + lista.get(3).toString() + "\n"
+												+ lista.get(4).toString());
+									} catch (IOException e1) {
+										// TODO Auto-generated catch block
+										e1.printStackTrace();
+									}
+
+								}
+							});
+							
+							
+							
 
 						} else {
 							System.out.println("me salgo");

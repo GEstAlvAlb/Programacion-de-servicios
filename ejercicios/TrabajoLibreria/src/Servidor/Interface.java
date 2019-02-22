@@ -12,6 +12,8 @@ public interface Interface extends Remote {
 	public void salir()throws RemoteException;
 	public boolean conectar(String nombre, String contraseña)throws RemoteException;
 
+	public List<String> hojaAnte(String libro, int pag) throws RemoteException, IOException;
+
 	
 
 	

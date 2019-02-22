@@ -58,14 +58,43 @@ public class Servidor implements Interface {
 	@Override
 	public List<String> hoja(String nomLibro, int numPagina) throws IOException {
 		List<String> lineas;
-
+		ArrayList<String> primeros = null;
+		int cont=0;
 		lineas = Files
 				.readAllLines(Paths.get(idsLibros.get(0).getRuta() + File.separator + nomLibro+".txt" ));
 		System.out.println(nomLibro);
+		
 
-		ArrayList<String> primeros=new ArrayList<String>(lineas.subList(numPagina, numPagina+5));
-	
-		primeros.add(String.valueOf(numPagina+5));
+		if(numPagina+5>=lineas.size()) {
+			System.out.println(numPagina);
+			primeros=new ArrayList<String>();
+			while (numPagina<lineas.size()) {
+				primeros.add(lineas.get(numPagina));
+				cont++;
+				numPagina++;
+				
+				
+			}
+			while (cont<4) {
+				primeros.add(" ");
+				cont++;
+				
+				
+			}
+			primeros.add("fin del libro");
+			primeros.add(String.valueOf(lineas.size()));
+		}else {
+			primeros=new ArrayList<String>(lineas.subList(numPagina, numPagina+5));
+			primeros.add(String.valueOf(numPagina+5));
+		}
+		
+		
+		
+		
+		System.out.println(primeros);
+		
+		
+		
 		return primeros;
 	}
 
@@ -98,6 +127,31 @@ public class Servidor implements Interface {
 			return true;
 		
 		return false;
+	}
+
+	@Override
+	public List<String> hojaAnte(String libro, int pag) throws RemoteException, IOException {
+		List<String> lineas;
+		ArrayList<String> primeros;
+		
+		lineas = Files
+				.readAllLines(Paths.get(idsLibros.get(0).getRuta() + File.separator + libro+".txt" ));
+		System.out.println(libro);
+
+		if(pag-10<0) {
+			primeros=new ArrayList<String>(lineas.subList(0, 5));
+			primeros.add(String.valueOf(5));
+		}else {
+			primeros=new ArrayList<String>(lineas.subList(pag-10, pag-5));
+			primeros.add(String.valueOf(pag-5));
+		}
+			
+		
+	
+		
+		return primeros;
+		
+		
 	}
 
 }
