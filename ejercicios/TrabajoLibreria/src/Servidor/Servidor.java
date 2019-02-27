@@ -26,13 +26,19 @@ public class Servidor implements Interface {
 
 	ArrayList<Libro> idsLibros = new ArrayList<>();
 	ArrayList<Persona> nomPersonas = new ArrayList<>();
-	Libro Pocoyo = new Libro("Pocoyo", 001,"./Libros");
+	Libro Pocoyo = new Libro("Pocoyo", 001, "./Libros");
+	Libro TerminaThor = new Libro("TerminaThor", 002, "./Libros");
+	Libro Espidermon = new Libro("Espidermon", 003, "./Libros");
+	Libro Voldemorrr = new Libro("Voldemorrr", 004, "./Libros");
 
 	Persona administrador = new Persona("Administrador", "1234");
 
 	public Servidor() {
 
 		idsLibros.add(Pocoyo);
+		idsLibros.add(TerminaThor);
+		idsLibros.add(Espidermon);
+		idsLibros.add(Voldemorrr);
 		nomPersonas.add(administrador);
 
 	}
@@ -59,73 +65,58 @@ public class Servidor implements Interface {
 	public List<String> hoja(String nomLibro, int numPagina) throws IOException {
 		List<String> lineas;
 		ArrayList<String> primeros = null;
-		int cont=0;
-		lineas = Files
-				.readAllLines(Paths.get(idsLibros.get(0).getRuta() + File.separator + nomLibro+".txt" ));
+		int cont = 0;
+		lineas = Files.readAllLines(Paths.get(idsLibros.get(0).getRuta() + File.separator + nomLibro + ".txt"));
 		System.out.println(nomLibro);
-		
 
-		if(numPagina+5>=lineas.size()) {
+		if (numPagina + 5 >= lineas.size()) {
 			System.out.println(numPagina);
-			primeros=new ArrayList<String>();
-			while (numPagina<lineas.size()) {
+			primeros = new ArrayList<String>();
+			while (numPagina < lineas.size()) {
 				primeros.add(lineas.get(numPagina));
 				cont++;
 				numPagina++;
-				
-				
+
 			}
-			while (cont<4) {
+			while (cont < 4) {
 				primeros.add(" ");
 				cont++;
-				
-				
+
 			}
 			primeros.add("fin del libro");
-			primeros.add(String.valueOf(lineas.size()));
-		}else {
-			primeros=new ArrayList<String>(lineas.subList(numPagina, numPagina+5));
-			primeros.add(String.valueOf(numPagina+5));
+			primeros.add(String.valueOf(lineas.size() - 1));
+		} else {
+			primeros = new ArrayList<String>(lineas.subList(numPagina, numPagina + 5));
+			primeros.add(String.valueOf(numPagina + 5));
 		}
-		
-		
-		
-		
+
 		System.out.println(primeros);
-		
-		
-		
+
 		return primeros;
 	}
 
 	@Override
-	public void salir() throws RemoteException {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public boolean conectar(String nombre, String contraseña) throws RemoteException {
-		int cont=-1;
-		boolean bolNombre=false;
-		boolean bolContraseña=false;
-		
+		int cont = -1;
+		boolean bolNombre = false;
+		boolean bolContraseña = false;
+
 		do {
 			cont++;
 			System.out.println(cont);
-			if(nomPersonas.get(cont).getNombre().equals(nombre)) {
-				bolNombre=true;
+			if (nomPersonas.get(cont).getNombre().equals(nombre)) {
+				bolNombre = true;
 				System.out.println("llega");
-				if(nomPersonas.get(cont).getContraseña().equals(contraseña)) {
-					bolContraseña=true;
+				if (nomPersonas.get(cont).getContraseña().equals(contraseña)) {
+					bolContraseña = true;
 				}
 			}
-			
-		}while(cont<nomPersonas.size()-1&&bolNombre==false);
-		
+
+		} while (cont < nomPersonas.size() - 1 && bolNombre == false);
+
 		if (bolContraseña)
 			return true;
-		
+
 		return false;
 	}
 
@@ -133,25 +124,36 @@ public class Servidor implements Interface {
 	public List<String> hojaAnte(String libro, int pag) throws RemoteException, IOException {
 		List<String> lineas;
 		ArrayList<String> primeros;
-		
-		lineas = Files
-				.readAllLines(Paths.get(idsLibros.get(0).getRuta() + File.separator + libro+".txt" ));
+
+		lineas = Files.readAllLines(Paths.get(idsLibros.get(0).getRuta() + File.separator + libro + ".txt"));
 		System.out.println(libro);
 
-		if(pag-10<0) {
-			primeros=new ArrayList<String>(lineas.subList(0, 5));
+		if (pag - 10 < 0) {
+			primeros = new ArrayList<String>(lineas.subList(0, 5));
 			primeros.add(String.valueOf(5));
-		}else {
-			primeros=new ArrayList<String>(lineas.subList(pag-10, pag-5));
-			primeros.add(String.valueOf(pag-5));
+		} else {
+			primeros = new ArrayList<String>(lineas.subList(pag - 10, pag - 5));
+			primeros.add(String.valueOf(pag - 5));
 		}
-			
-		
-	
-		
+
 		return primeros;
-		
-		
+
+	}
+
+	@Override
+	public boolean comprobarLibro(String libro) throws RemoteException {
+
+		int cont = 0;
+		do {
+			if (idsLibros.get(cont).getNomLibro().equals(libro)) {
+				return true;
+
+			}
+			cont++;
+
+		} while (cont < idsLibros.size());
+
+		return false;
 	}
 
 }

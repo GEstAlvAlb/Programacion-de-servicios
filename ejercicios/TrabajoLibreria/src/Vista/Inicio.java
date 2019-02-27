@@ -64,5 +64,17 @@ public class Inicio extends JFrame {
 		lblPocoyo.setBounds(44, 189, 60, 14);
 		contentPane.add(lblPocoyo);
 		
+		JLabel lblTerminathor = new JLabel("TerminaThor");
+		lblTerminathor.setBounds(123, 189, 73, 14);
+		contentPane.add(lblTerminathor);
+		
+		JLabel lblNewLabel_1 = new JLabel("Espidermon");
+		lblNewLabel_1.setBounds(206, 189, 73, 14);
+		contentPane.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("Voldemorrr");
+		lblNewLabel_2.setBounds(289, 189, 65, 14);
+		contentPane.add(lblNewLabel_2);
+		
 	}
 }

@@ -19,8 +19,6 @@ public class Vista extends JFrame {
 	public JLabel lblNomLibro;
 	public JButton btnPagSigiente;
 	public JButton btnPagAnterior;
-	public JButton btSalir;
-	public JButton btSalDelLibro ;
 
 	public Vista() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -41,14 +39,6 @@ public class Vista extends JFrame {
 		btnPagAnterior = new JButton("Pagina Anterior");
 		btnPagAnterior.setBounds(509, 97, 132, 23);
 		contentPane.add(btnPagAnterior);
-		
-		btSalir = new JButton("Salir");
-		btSalir.setBounds(509, 396, 89, 23);
-		contentPane.add(btSalir);
-		
-		btSalDelLibro = new JButton("Salir del libro");
-		btSalDelLibro.setBounds(509, 131, 132, 23);
-		contentPane.add(btSalDelLibro);
 		
 		textPane = new JTextPane();
 		textPane.setBounds(24, 59, 461, 360);
